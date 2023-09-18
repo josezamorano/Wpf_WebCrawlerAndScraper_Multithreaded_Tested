@@ -1,0 +1,196 @@
+﻿<UserControl x:Class="PresentationLayer.MVVM.Views.ScraperView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:view="clr-namespace:PresentationLayer.MVVM.Views"
+             xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:cuc="clr-namespace:PresentationLayer.CustomUserControls"
+             >
+   
+        <Grid x:Name="GridSraperView"        
+            VerticalAlignment="Center" HorizontalAlignment="Stretch"
+            Background="Transparent"
+            Margin="5"
+            Visibility="{Binding ScraperViewVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+          >
+     
+        <Grid.ColumnDefinitions>            
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="1*"/>            
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <!-- Header Menu Panel buttons -->
+            <RowDefinition Height="Auto"/>
+            <!-- View Content-->
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Column="0" BorderBrush="Red" BorderThickness="0"/>
+        <Border Grid.Column="1" BorderBrush="Blue" BorderThickness="0"/>
+        <Border Grid.Column="2" BorderBrush="Green" BorderThickness="0"/>
+        
+        <Button x:Name="backButton"
+              Grid.Column="0"
+              Grid.Row="0"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Stretch"
+              Style="{StaticResource menuBackButton}"         
+              Command="{Binding GoBackButtonCommand}"
+              BorderBrush="AliceBlue"
+              BorderThickness="0"
+              >
+            <icon:PackIconMaterial Kind="ArrowLeft" Width="25" Height="25" />
+        </Button>
+
+        <StackPanel 
+                Grid.Column="1"
+                Grid.Row="0"
+                Orientation="Horizontal" FlowDirection="LeftToRight">
+            <fa:IconImage Icon="fingerprint" 
+                          Foreground="{StaticResource plainTextBrushBrightWhite}"
+                          Margin="25,0,0,0"/>
+           
+            <Label x:Name="lblCrawlerSection"
+                   
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Content="SCRAPER"             
+                   FontSize="36"
+                   Margin="10,0,0,0"
+                   Foreground="{StaticResource plainTextBrushBrightWhite}"
+              />
+        </StackPanel>    
+       
+      
+
+            <StackPanel x:Name="stackPanelScraperView"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Background="Transparent"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    Orientation="Vertical"
+                    Margin="50,0,50,0"                    
+                    >
+            <TextBlock x:Name="TextBlockSelectFolder"
+                       Text="Select Folder with Files to Scrape"
+                       Style="{StaticResource standardTextBlock}"
+                       />
+
+            <Button x:Name="btnSelectFolder"
+                    Style="{StaticResource actionButton}" 
+                    Width="100"
+                    Command="{Binding SelectFolderCommand}"
+                    IsEnabled="{Binding ButtonSelectFolderIsEnabled , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    >
+                <TextBlock Text="Select Folder" VerticalAlignment="Center"/>
+            </Button>
+                
+            <TextBox x:Name="textFolderPath"
+                    Style="{StaticResource readonlyTextBox}"
+                    Text="{Binding TextBoxSelectedFolderPath ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    />
+                
+            <TextBlock x:Name="FolderSelectorWarning"
+                   Text="{Binding TextBlockFolderSelectorWarning , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                   Style="{StaticResource standardTextBlock}"
+                   Foreground="{StaticResource plainTextBrushFuchsia}"
+            />
+
+            <TextBlock x:Name="TextBlockInsertXPath"
+                Text="Insert XPath expression to the Scraper "
+                Style="{StaticResource standardTextBlock}"
+            />
+
+            <TextBox x:Name="textXPathExpression"
+                Style="{StaticResource inputTextBox}"               
+                Height="150"
+                VerticalScrollBarVisibility="Auto"
+                Text="{Binding TextBoxXPathExpression , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"
+                IsReadOnly="{Binding TextBoxXPathExpressionIsReadonly}"
+                />
+
+            <TextBlock x:Name="TextBlockXPathWarning"
+                Text="{Binding TextBlockXPathExpressionWarning ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Style="{StaticResource standardTextBlock}"
+                Foreground="{StaticResource plainTextBrushFuchsia}"
+            />
+
+
+            <TextBlock x:Name="TextBlockSelectTextFiles"
+                 Text="Select Text files to scrape"
+                 Style="{StaticResource standardTextBlock}"
+             />
+
+            <Button x:Name="btnSelectScrapingFiles"
+                Style="{StaticResource actionButton}"
+                Width="100"
+                Command="{Binding SelectScrapingFilesCommand}"
+                IsEnabled="{Binding ButtonSelectFolderIsEnabled , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"
+            >
+                <TextBlock Text="Select Text Files" VerticalAlignment="Center"/>
+            </Button>
+                
+            <TextBlock x:Name="TextBlockTotalSelectedFiles"
+                       Text="{Binding TextBlockTotalCountSelectedFiles , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Style="{StaticResource standardTextBlock}"
+            />
+
+            <TextBlock x:Name="TextBlockTotalSelectedFilesWarning"
+                       Text="{Binding TextBlockTotalSelectedFilesWarninng , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="{StaticResource plainTextBrushFuchsia}"
+            /> 
+
+            <Button x:Name="ButtonRunScraper"
+                    Style="{StaticResource actionButton}"
+                    Width="100"
+                    IsEnabled="{Binding ButtonRunScraperIsEnabled , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Command="{Binding RunScraperCommand}"
+                    >
+                <TextBlock x:Name="TextBlockRunScraper"
+                           Text="Run Scraper"/>
+            </Button>
+
+        </StackPanel>
+        <cuc:AllTextFilesListBox x:Name="allTextFilesListBox"            
+                Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"
+                Background="{StaticResource panelBackgroundBrushBlue_II}"
+                Visibility="{Binding SourceScrapingFilesListBoxVisibility , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                CustomControlSourceFolderPath="{Binding CustomControlSelectedFolderPath , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                CustomControlAllScrapingFiles="{Binding CustomControlAllFiles, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                CustomControlAllFilesAreChecked="{Binding CustomControlAllFilesSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                SaveAndGoBackCommand="{Binding SaveAndGoBackToViewCommand}"
+                                 
+        />
+
+        <cuc:Modal
+                 Grid.Column="1"
+                 Grid.Row="1"
+                 Panel.ZIndex="20"
+                 VerticalAlignment="Stretch"
+                 HorizontalAlignment="Stretch"
+                 Margin="5"
+                 Background="{StaticResource panelBackgroundBrushBlue_II}"
+                 Opacity="1"
+                 Visibility="{Binding ModalControlVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"            
+
+                 ModalTitle="{Binding ModalControlTitle , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 ModalTitleColor="White"
+                 ModalText="{Binding ModalControlText ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 ModalTextColor="White"
+                 ModalBtnCancelVisibility="{Binding ModalControlBtnCancelVisibility , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 ModalBtnOkVisibility="{Binding ModalControlBtnOkVisibility, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"
+                 ModalBtnYesVisibility="{Binding ModalControlBtnYesVisibility, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"
+                 ModalBtnNoVisibility="{Binding ModalControlBtnNoVisibility, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"
+                     
+                 ModalBtnOkCommand="{Binding ButtonOkClickedCommand }"
+     />
+
+    </Grid>
+
+</UserControl>

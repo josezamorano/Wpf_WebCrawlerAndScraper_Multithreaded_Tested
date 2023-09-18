@@ -1,0 +1,73 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    
+    
+    <!-- Panel Border Colors-->    
+    <Color x:Key="panelborderWhite">#ffffff</Color>
+    <Color x:Key="panelborderBlue_I">#d8dcff</Color>
+    <Color x:Key="panelborderBlue_II">#c4cbff</Color>
+    <Color x:Key="panelborderBlue_III">#b1baff</Color>    
+    <Color x:Key="panelborderBlue_IV">#6666ff</Color>
+    <Color x:Key="panelborderBlue_V">#142fff</Color>
+    <Color x:Key="panelborderBlue_VI">#2E3967</Color>
+    <Color x:Key="panelborderBlue_VII">#00129d</Color>
+    <Color x:Key="panelborderBlue_VIII">#00094e</Color>
+    <!-- Panel Background -->
+    <Color x:Key="panelBackgroundBlue_I">#2E3967</Color>
+    <Color x:Key="panelBackgroundBlue_II">#192559</Color>
+    <!-- Panel Colors -->
+    <Color x:Key="panelBaseBlue_I">#9999ff</Color>
+    <Color x:Key="panelBaseBlue_II">#6275ff</Color>
+    <Color x:Key="panelBaseBlue_III">#3333ff</Color>
+    <Color x:Key="panelBaseBlue_IV">#0000ff</Color>
+    <Color x:Key="panelBaseBlue_V">#00094e</Color>
+
+    <!-- Text Colors -->
+    <Color x:Key="plainTextWhite">#ffffff</Color>
+    <Color x:Key="plainTextNeonWhite">#FBFFFF</Color>
+    <Color x:Key="plainTextBrightWhite">#fffffb</Color>
+
+    <!-- Button Colors -->
+    <Color x:Key="buttonDefaultBlue_I">#2e00f2</Color>
+    <Color x:Key="buttonDefaultBlue_II">#2a00df</Color>
+    <Color x:Key="buttonDefaultBlue_III">#2701c9</Color>
+    <Color x:Key="buttonDefaultBlue_IV">#1e009f</Color>
+    <Color x:Key="buttonDefaultBlue_V">#1c0192</Color>
+
+    <Color x:Key="buttonHoverBlue_I">#43c4ef</Color>
+    <Color x:Key="buttonHoverBlue_II">#00b4ff</Color>
+    <Color x:Key="buttonHoverBlue_III">#009eff</Color>
+    <Color x:Key="buttonHoverBlue_IV">#0066ff</Color>
+    <Color x:Key="buttonHoverBlue_V">#004fff</Color>
+
+    <Color x:Key="buttonActiveBlue_I">#001eff</Color>
+    <Color x:Key="buttonActiveBlue_II">#001be7</Color>
+    <Color x:Key="buttonActiveBlue_III">#0119cb</Color>
+    <Color x:Key="buttonActiveBlue_IV">#021496</Color>
+    <Color x:Key="buttonActiveBlue_V">#000b5e</Color>
+    
+    
+    <!-- Panel Brush Values -->
+    <SolidColorBrush x:Key="panelborderBrushWhite" Color="#ffffff"/>
+    <SolidColorBrush x:Key="panelborderBrushBlue_I" Color="#d8dcff" />
+    <SolidColorBrush x:Key="panelborderBrushBlue_II" Color="#c4cbff" />
+    <SolidColorBrush x:Key="panelborderBrushBlue_III" Color="#b1baff"/>
+    <SolidColorBrush x:Key="panelborderBrushBlue_IV" Color="#6666ff"/>
+    <SolidColorBrush x:Key="panelborderBrushBlue_V" Color="#4e63ff" />
+    <SolidColorBrush x:Key="panelborderBrushBlue_VI" Color="#142fff" />
+    <SolidColorBrush x:Key="panelborderBrushBlue_VII" Color="#00129d" />
+    <SolidColorBrush x:Key="panelborderBrushBlue_VIII" Color="#00094e" />
+
+    <!-- Panel Background -->
+    <SolidColorBrush x:Key="panelBackgroundBrushBlue_I" Color="#2E3967"/>
+    <SolidColorBrush x:Key="panelBackgroundBrushBlue_II" Color="#192559"/>
+
+    <!-- Text Brush Values -->
+    <SolidColorBrush x:Key="plainTextBrushWhite" Color="#ffffff" />
+    <SolidColorBrush x:Key="plainTextBrushNeonWhite" Color="#FBFFFF"/>
+    <SolidColorBrush x:Key="plainTextBrushBrightWhite" Color="#fffffb" />
+    <SolidColorBrush x:Key="plainTextBrushRed" Color="#FF0000"/>
+    <SolidColorBrush x:Key="plainTextBrushFuchsia" Color="#FF00FF" />
+
+</ResourceDictionary>

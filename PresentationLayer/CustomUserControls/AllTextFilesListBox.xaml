@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="PresentationLayer.CustomUserControls.AllTextFilesListBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresentationLayer.CustomUserControls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Name="allTextFilesUserControl"
+             >
+    
+    <Grid x:Name="gridlAllFiles">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        
+       
+        <CheckBox x:Name="checkBoxAllFiles"
+                  Grid.Row="0"                
+                  Content=" Select all Files" 
+                  Foreground="white"
+                  Margin="10"
+                  VerticalAlignment="Bottom"
+                  IsChecked="{Binding Path=CustomControlAllFilesAreChecked,Mode=TwoWay,ElementName=allTextFilesUserControl}"
+        />
+        <Button x:Name="buttonSaveAndGoBack"
+                Grid.Row="0"
+                Grid.Column="1"
+                Style="{StaticResource actionButton}"
+                Width="120"
+                Command="{Binding Path=SaveAndGoBackCommand, Mode=TwoWay, ElementName=allTextFilesUserControl}"
+                >
+            <TextBlock Text="Save And Go Back"/>
+        </Button>
+
+        <Border x:Name="AllFilesListbox"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                BorderBrush="{StaticResource plainTextBrushNeonWhite}" 
+                BorderThickness="1"
+                CornerRadius="10"
+                Margin="0,0,0,0" 
+        >
+            <StackPanel Orientation="Vertical">              
+                <TextBlock x:Name="TextBlocFolderPath"
+                            Text="{Binding Path= CustomControlSourceFolderPath, ElementName=allTextFilesUserControl}"
+                            Style="{StaticResource standardTextBlock}"
+                            Margin="20,10,20,20"
+                            />               
+                <ListBox x:Name="ListBoxAllTextFiles"
+                         ItemsSource="{Binding CustomControlAllScrapingFiles, ElementName=allTextFilesUserControl}"
+                         Height="350"
+                >                   
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight"
+                            >
+                                <CheckBox 
+                                    IsChecked="{Binding IsSelected , Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}"  
+                                    Margin="3" 
+                                    Command="{Binding Path=CustomControlSingleItemIsSelectedCommand, ElementName= allTextFilesUserControl}"
+                                    >
+                                </CheckBox>
+                                <TextBlock Text="{Binding FilePath, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"  Margin="3"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

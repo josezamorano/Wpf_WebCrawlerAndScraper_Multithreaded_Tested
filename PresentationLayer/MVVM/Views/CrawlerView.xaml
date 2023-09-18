@@ -1,0 +1,209 @@
+﻿<UserControl x:Class="PresentationLayer.MVVM.Views.CrawlerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:view="clr-namespace:PresentationLayer.MVVM.Views"
+             xmlns:fa_sharp="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:fa_wpf="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
+             xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:cuc="clr-namespace:PresentationLayer.CustomUserControls"
+             >
+
+    <Grid x:Name="gridCrawlerView" 
+          VerticalAlignment="Center" HorizontalAlignment="Stretch" 
+          Margin="5"     
+          Background="Transparent"
+          Visibility="{Binding CrawlerViewVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+          >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <!-- Header Menu Panel buttons -->
+            <RowDefinition Height="Auto"/>
+            <!-- View Content-->
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Button x:Name="backButton"
+             Grid.Column="0"
+             Grid.Row="0"
+             VerticalAlignment="Center"
+             HorizontalAlignment="Stretch"
+             Style="{StaticResource menuBackButton}"         
+             Command="{Binding GoBackButtonCommand}"
+             BorderBrush="AliceBlue"
+             BorderThickness="0"
+             >
+            <icon:PackIconMaterial Kind="ArrowLeft" Width="25" Height="25" />
+        </Button>
+
+        <StackPanel 
+        Grid.Column="1"
+        Grid.Row="0"
+        Orientation="Horizontal" FlowDirection="LeftToRight">
+            <fa_sharp:IconImage Icon="spider" 
+                                Foreground="{StaticResource plainTextBrushBrightWhite}"  
+                                Margin="25,0,0,0"/>
+
+            <Label x:Name="lblCrawlerSection"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Content="CRAWLER"             
+                  FontSize="36"
+                  Margin="10,0,0,0"
+                  Foreground="{StaticResource plainTextBrushBrightWhite}"
+             />
+
+        </StackPanel>       
+            <StackPanel x:Name="panelCrawlerView" 
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Orientation="Vertical"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch"                   
+                    Background="Transparent"
+                    Margin="50,0,50,0"                   
+                    >
+
+            <TextBlock x:Name="lblInsertUrl" 
+                   Text="Insert Url" 
+                   Style="{StaticResource standardTextBlock}"
+            />
+
+            <TextBox x:Name="txtUrlForCrawler" 
+                    Style="{StaticResource inputTextBox}"
+                    IsReadOnly="{Binding TextBoxUrlForCrawlerIsReadOnly}"
+                    Text="{Binding TextBoxUrlForCrawler, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"
+                     />
+            <TextBlock x:Name="lblUrlWarning"
+                    Text="{Binding TextBlockUrlWarning}"
+                    Style="{StaticResource standardTextBlock}"  
+                    Foreground="{StaticResource plainTextBrushFuchsia}"
+            />
+
+            <TextBlock x:Name="lblSearchType" 
+                   Text="Select Search Type"
+                   Style="{StaticResource standardTextBlock}"
+                   />
+            <TextBlock x:Name="lblSearchTypeWarning"
+                   Text="{Binding TextBlockSearchTypeWarning}"
+                   Style="{StaticResource standardTextBlock}"  
+                   Foreground="{StaticResource plainTextBrushFuchsia}"
+             />
+
+            <RadioButton x:Name="radioBtnSearchAllPages"
+                         Height="20"
+                         IsChecked="{Binding RadioBtnSearchAllPagesIsChecked}"
+                         Foreground="White"
+                         FontSize="14"
+                         VerticalAlignment="Top"
+                         VerticalContentAlignment="Center"
+                         GroupName="radioPagesSelector"
+                         Command="{Binding SearchAllPagesChecked}"
+                >
+                <TextBlock Text="Search all Pages"
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Center" />
+            </RadioButton>
+
+            <WrapPanel x:Name="WrapPanelSearch">
+                <RadioButton x:Name="radioBtnSearchTotalPages"
+                      Grid.Column="0"                     
+                      HorizontalContentAlignment="Stretch"
+                      IsChecked="{Binding RadioBtnSearchTotalPagesIsChecked}"                      
+                      Foreground="White"
+                      FontSize="14"   
+                      VerticalAlignment="Top"
+                      VerticalContentAlignment="Center"
+                      GroupName="radioPagesSelector"
+                             Command="{Binding SearchTotalPagesChecked}"
+                >
+                    <TextBlock Text="Search Total Pages"
+                               TextWrapping="Wrap"                               
+                               />
+                </RadioButton>
+                <TextBox x:Name="textBoxTotalPages"  
+                            Style="{StaticResource inputTextBox}"
+                            Margin="15,0,0,0"
+                            Width="100"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            IsReadOnly="{Binding TextBoxTotalPagesIsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Text="{Binding TextBoxTotalPages, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                     >
+                </TextBox>
+
+            </WrapPanel>
+            <TextBlock x:Name="lblPagesSelectedWarning"
+            Text="{Binding TextBlockPagesSelectedWarning}"
+            Style="{StaticResource standardTextBlock}"                           
+            Foreground="{StaticResource plainTextBrushFuchsia}"
+          />
+            <TextBlock x:Name="lblFolder" Text="Select a folder to Store the Reports"
+                    Style="{StaticResource standardTextBlock}"                 
+                   />
+            <Button x:Name="btnSelectFolder"
+                    Style="{StaticResource actionButton}"                
+                    HorizontalAlignment="Left"  
+                    Width="100"
+                    Command="{Binding SelectFolderCommand}"
+                    IsEnabled="{Binding ButtonSelectFolderIsEnabled}"
+                    >
+                <TextBlock Text="Select Folder" VerticalAlignment="Center"/>
+            </Button>
+            <TextBox x:Name="textFolderPath"
+                Style="{StaticResource readonlyTextBox}"
+                     Text="{Binding TextBoxSelectedFolderPath}"
+                />
+            <TextBlock x:Name="FolderSelectorWarning"
+                       Text="{Binding TextBlockFolderSelectorWarning}"
+                       Style="{StaticResource standardTextBlock}"
+                       Foreground="{StaticResource plainTextBrushFuchsia}"
+             />
+
+            <Button x:Name="btnRunCrawler"
+                    Style="{StaticResource actionButton}"                
+                    HorizontalAlignment="Left"  
+                    Width="100"
+                    Command="{Binding RunCrawlerCommand}"
+                    IsEnabled="{Binding ButtonRunCrawlerIsEnabled}"
+                    >
+                <TextBlock Text="Run Crawler" VerticalAlignment="Center"/>
+            </Button>
+
+        </StackPanel>
+     
+        <cuc:Modal
+            Grid.Column="1"
+            Grid.Row="1"
+            Panel.ZIndex="20"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            Margin="5"
+            Background="{StaticResource panelBackgroundBrushBlue_II}"
+            Opacity="1"
+            Visibility="{Binding ModalControlVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"            
+
+            ModalTitle="{Binding ModalControlTitle , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ModalTitleColor="White"
+            ModalText="{Binding ModalControlText ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ModalTextColor="White"
+            ModalBtnCancelVisibility="{Binding ModalControlBtnCancelVisibility , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ModalBtnOkVisibility="{Binding ModalControlBtnOkVisibility, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"
+            ModalBtnYesVisibility="{Binding ModalControlBtnYesVisibility, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"
+            ModalBtnNoVisibility="{Binding ModalControlBtnNoVisibility, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"
+                            
+            ModalBtnOkCommand="{Binding ButtonOkClickedCommand }"
+            />
+
+    </Grid>
+
+
+</UserControl>

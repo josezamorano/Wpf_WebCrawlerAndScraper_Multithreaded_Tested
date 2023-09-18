@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="PresentationLayer.CustomUserControls.Modal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresentationLayer.CustomUserControls"
+             mc:Ignorable="d" 
+             VerticalAlignment="Stretch"
+             HorizontalAlignment="Stretch"
+             Name="modalUserControl"
+             >
+
+    <Border BorderBrush="{StaticResource panelborderBrushWhite}" 
+            BorderThickness="1"
+            CornerRadius="10"
+            Margin="0,0,0,0"            
+            >
+        <StackPanel Orientation="Vertical" >
+
+            <Label Content="{Binding Path=ModalTitle , ElementName=modalUserControl}"
+               Foreground="{Binding Path=ModalTitleColor , ElementName=modalUserControl}"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="30"
+               />
+
+            <TextBlock Text="{Binding Path=ModalText , ElementName=modalUserControl}"
+               Foreground="{Binding Path=ModalTextColor, ElementName=modalUserControl}"
+               Style="{StaticResource standardTextBlock}"                       
+               Margin="30,20,30,30"
+                      
+               />
+
+            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" 
+                        
+                        >
+                <Button x:Name="ModalBtnNo"  
+                        Style="{StaticResource actionButton}"
+                        Width="80"                    
+                        Height="30"
+                        Margin="25,5,5,5"
+                        FontSize="14"                        
+                        Background="{Binding Path=ModalBtnNoColor , ElementName=modalUserControl}"
+                        Visibility="{Binding Path=ModalBtnNoVisibility, ElementName=modalUserControl}"                        
+                        Command="{Binding Path=ModalBtnNoCommand , ElementName=modalUserControl}"
+                >
+                    <TextBlock Text="No"         
+                               Width="80" 
+                               Height="30"                                    
+                               Padding="30,4,0,0" 
+                    />
+                </Button>
+
+                <Button x:Name="ModalBtnYes"
+                        Style="{StaticResource actionButton}"
+                        Width="80"                        
+                        Height="30"
+                        Margin="25,5,5,5"
+                        FontSize="14"                        
+                        Background="{Binding Path=ModalBtnYesColor, ElementName=modalUserControl}"
+                        Visibility="{Binding Path=ModalBtnYesVisibility, ElementName=modalUserControl}"
+                        Command="{Binding Path=ModalBtnYesCommand, ElementName=modalUserControl}"
+                        
+                 >
+                    <TextBlock Text="Yes"  
+                               Width="80" 
+                               Height="30"                                    
+                               Padding="30,4,0,0" 
+                    />
+                </Button>
+
+                <Button x:Name="ModalBtnCancel" 
+                        Style="{StaticResource actionButton}"
+                        Width="80"
+                        Height="30"
+                        Margin="25,5,5,5"
+                        HorizontalAlignment="Left"
+                        FontSize="14"                        
+                        Background="{Binding Path=ModalBtnCancelColor, ElementName=modalUserControl}"
+                        Visibility="{Binding Path=ModalBtnCancelVisibility, ElementName=modalUserControl}"
+                        Command="{Binding Path=ModalBtnCancelCommand, ElementName=modalUserControl}"                        
+                >
+                    <TextBlock Text="Cancel" 
+                               Width="80" 
+                               Height="30"                                    
+                               Padding="30,4,0,0" 
+                    />
+                </Button>
+
+                <Button x:Name="ModalBtnOk"   
+                            Style="{StaticResource actionButton}"
+                            Width="80"
+                            Height="30"
+                            Margin="25,5,5,5"
+                            HorizontalAlignment="Left"
+                            FontSize="14"                       
+                            Background="{Binding Path=ModalBtnOkColor , ElementName=modalUserControl}"
+                            Visibility="{Binding Path=ModalBtnOkVisibility, ElementName=modalUserControl}"
+                            Command="{Binding Path=ModalBtnOkCommand, ElementName=modalUserControl}"                       
+                     >
+                    <Border BorderBrush="red" BorderThickness="0">
+                        <TextBlock Text="Ok" 
+                                   Width="80" 
+                                   Height="30"                                    
+                                   Padding="30,4,0,0"                                   
+                                   />
+                    </Border>
+                </Button>
+            </StackPanel>
+            
+            
+        </StackPanel>
+
+
+    </Border>
+
+</UserControl>
